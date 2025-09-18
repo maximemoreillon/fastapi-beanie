@@ -16,6 +16,12 @@ async def handler():
     return {"items": items}
 
 
+@router.get("/{item_id}")
+async def handler(item_id: str):
+    item = await Item.get(item_id)
+    return item
+
+
 @router.patch("/{item_id}")
 async def handler(item_id: str, new_properties: Item):
     item = await Item.get(item_id)

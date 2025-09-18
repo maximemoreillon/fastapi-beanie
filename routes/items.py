@@ -19,6 +19,8 @@ async def handler():
 @router.get("/{item_id}")
 async def handler(item_id: str):
     item = await Item.get(item_id)
+    if not item:
+        raise HTTPException(status_code=404, detail="Item not found")
     return item
 
 
